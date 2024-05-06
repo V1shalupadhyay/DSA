@@ -1,0 +1,27 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+
+        // Calculate counts
+        long[] bstCount = new long[n + 1];
+        long[] btCount = new long[n + 1];
+        bstCount[0] = 1;
+        bstCount[1] = 1;
+        btCount[0] = 1;
+        btCount[1] = 1;
+
+        for (int i = 2; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                bstCount[i] += bstCount[j] * bstCount[i - j - 1];
+                btCount[i] += btCount[j] * btCount[i - j - 1];
+            }
+        }
+
+        // Output results
+        System.out.println(bstCount[n]);
+        System.out.println(btCount[n]);
+    }
+}
